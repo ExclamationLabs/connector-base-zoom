@@ -1,0 +1,57 @@
+<!--
+    Copyright 2020 Exclamation Labs
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<role xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3"  version="16">
+    <name>Zoom Meta Role Group</name>
+    <iteration>0</iteration>
+    <iterationToken/>
+    <activation>
+        <effectiveStatus>enabled</effectiveStatus>
+        <enableTimestamp>2020-03-24T11:40:31.929-05:00</enableTimestamp>
+    </activation>
+    <inducement>
+        <construction>
+            <resourceRef oid="30f847f7-1a2d-40f1-88e4-0a8e4f1212d2" relation="org:default" type="c:ResourceType">
+            </resourceRef>
+            <kind>entitlement</kind>
+            <intent>privilege</intent>
+        </construction>
+        <order>1</order>
+    </inducement>
+    <inducement>
+        <construction>
+            <resourceRef oid="30f847f7-1a2d-40f1-88e4-0a8e4f1212d2" relation="org:default" type="c:ResourceType">
+
+            </resourceRef>
+            <kind>account</kind>
+            <intent>default</intent>
+            <association >
+                <c:ref xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3">ri:UserToGroupLink</c:ref>
+                <outbound>
+                    <strength>strong</strength>
+                    <expression>
+                        <associationFromLink xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xsi:type="c:AssociationFromLinkExpressionEvaluatorType">
+                            <projectionDiscriminator xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="c:ShadowDiscriminatorType">
+                                <kind>entitlement</kind>
+                                <intent>privilege</intent>
+                            </projectionDiscriminator>
+                        </associationFromLink>
+                    </expression>
+                </outbound>
+            </association>
+        </construction>
+        <order>2</order>
+    </inducement>
+</role>
