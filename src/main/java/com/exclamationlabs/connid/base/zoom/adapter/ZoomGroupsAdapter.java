@@ -1,5 +1,6 @@
 package com.exclamationlabs.connid.base.zoom.adapter;
 
+import com.exclamationlabs.connid.base.connector.adapter.AdapterValueTypeConverter;
 import com.exclamationlabs.connid.base.connector.adapter.BaseGroupsAdapter;
 import com.exclamationlabs.connid.base.zoom.model.ZoomGroup;
 import com.exclamationlabs.connid.base.zoom.model.ZoomUser;
@@ -17,10 +18,9 @@ public class ZoomGroupsAdapter extends BaseGroupsAdapter<ZoomUser, ZoomGroup> {
     @Override
     protected ZoomGroup constructGroup(Set<Attribute> attributes, boolean creation) {
         ZoomGroup group = new ZoomGroup();
-        group.setId(getIdentityIdAttributeValue(attributes));
-        group.setName(getIdentityNameAttributeValue(attributes));
+        group.setId(AdapterValueTypeConverter.getIdentityIdAttributeValue(attributes));
 
-        group.setName(getSingleAttributeValue(String.class, attributes, GROUP_NAME));
+        group.setName(AdapterValueTypeConverter.getSingleAttributeValue(String.class, attributes, GROUP_NAME));
         return group;
     }
 

@@ -2,7 +2,7 @@ package com.exclamationlabs.connid.base.zoom;
 
 import com.exclamationlabs.connid.base.connector.BaseConnector;
 import com.exclamationlabs.connid.base.connector.attribute.ConnectorAttributeMapBuilder;
-import com.exclamationlabs.connid.base.connector.authenticator.JWTAuthenticator;
+import com.exclamationlabs.connid.base.connector.authenticator.JWTHS256Authenticator;
 import com.exclamationlabs.connid.base.zoom.adapter.ZoomGroupsAdapter;
 import com.exclamationlabs.connid.base.zoom.adapter.ZoomUsersAdapter;
 import com.exclamationlabs.connid.base.zoom.attribute.ZoomGroupAttribute;
@@ -25,7 +25,7 @@ public class ZoomConnector extends BaseConnector<ZoomUser, ZoomGroup> {
 
     public ZoomConnector() {
 
-        setAuthenticator(new JWTAuthenticator());
+        setAuthenticator(new JWTHS256Authenticator());
         setDriver(new ZoomDriver());
         setUsersAdapter(new ZoomUsersAdapter());
         setGroupsAdapter(new ZoomGroupsAdapter());

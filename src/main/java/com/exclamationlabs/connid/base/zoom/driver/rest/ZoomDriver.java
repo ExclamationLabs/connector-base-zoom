@@ -1,5 +1,6 @@
 package com.exclamationlabs.connid.base.zoom.driver.rest;
 
+import com.exclamationlabs.connid.base.connector.configuration.ConnectorProperty;
 import com.exclamationlabs.connid.base.connector.driver.rest.BaseRestDriver;
 import com.exclamationlabs.connid.base.connector.driver.rest.RestFaultProcessor;
 import com.exclamationlabs.connid.base.zoom.model.ZoomGroupMember;
@@ -15,6 +16,7 @@ import org.identityconnectors.framework.common.exceptions.ConnectorException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ZoomDriver extends BaseRestDriver<ZoomUser, ZoomGroup> {
 
@@ -31,6 +33,11 @@ public class ZoomDriver extends BaseRestDriver<ZoomUser, ZoomGroup> {
     @Override
     protected boolean usesBearerAuthorization() {
         return true;
+    }
+
+    @Override
+    public Set<ConnectorProperty> getRequiredPropertyNames() {
+        return null;
     }
 
     @Override
