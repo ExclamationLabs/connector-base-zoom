@@ -1,6 +1,6 @@
 # Zoom Connector
 
-Open source Midpoint connector for Zoom <https://zoom.us>
+Open-source midPoint connector for Zoom <https://zoom.us>
 
 ## Introductory Notes
 
