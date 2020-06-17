@@ -13,8 +13,8 @@
 
 package com.exclamationlabs.connid.base.connector.zoom;
 
-import com.exclamationlabs.connid.base.connector.util.ConnectorMockRestTest;
-import com.exclamationlabs.connid.base.connector.util.ConnectorTestUtils;
+import com.exclamationlabs.connid.base.connector.test.util.ConnectorMockRestTest;
+import com.exclamationlabs.connid.base.connector.test.util.ConnectorTestUtils;
 import com.exclamationlabs.connid.base.zoom.ZoomConnector;
 import com.exclamationlabs.connid.base.zoom.attribute.ZoomGroupAttribute;
 import com.exclamationlabs.connid.base.zoom.attribute.ZoomUserAttribute;
@@ -58,7 +58,6 @@ public class ZoomConnectorTest extends ConnectorMockRestTest {
             }
         };
         ZoomConfiguration configuration = new ZoomConfiguration();
-        configuration.setMidPointConfigurationFilePath("src/test/resources/testZoomConfiguration.properties");
         connector.init(configuration);
     }
 
