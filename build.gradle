@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'application'
 }
 
 repositories {
@@ -21,31 +20,23 @@ targetCompatibility = '1.8'
 def versionNumber = "${project_version}"
 
 dependencies {
-    compile 'org.apache.commons:commons-lang3:3.8.1'
-    compile 'net.tirasa.connid:connector-test-common:1.5.0.0'
 
-    compile 'org.codehaus.groovy:groovy:2.5.2'
+    // Required for MidPoint runtime
+    runtimeOnly 'org.codehaus.groovy:groovy:2.5.2'
+    runtimeOnly 'com.evolveum.polygon:connector-common:1.5.0.0'
 
     // HTTP/RESTful support
-    compile 'com.google.code.gson:gson:2.8.6'
-    compile 'org.apache.httpcomponents:httpclient:4.5.10'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.10'
 
-    // JWT.io auth API for JWT
-    compile 'com.auth0:java-jwt:3.10.3'
+    implementation 'com.exclamationlabs.connid:connector-base:0.1-+'
 
-    compile 'com.evolveum.polygon:connector-common:1.5.0.0'
-
-    compile 'com.exclamationlabs.connid:connector-base:0.1-+'
-
-    testCompile 'com.exclamationlabs.connid:connector-base-test-support:0.1-+'
-
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:3.1.0'
+    testImplementation 'com.exclamationlabs.connid:connector-base-test-support:0.1-+'
     testImplementation 'net.tirasa.connid:connector-framework-internal:1.5.0.0'
 }
 
 task copyDependencyJars(type: Copy) {
-    from configurations.compile.collect {
+    from configurations.runtimeClasspath.collect {
         if(it.isFile() && it.getCanonicalFile().getCanonicalPath().endsWith('.jar') &&
                 (!it.getCanonicalFile().getCanonicalPath().contains("connector-framework"))) {
             it

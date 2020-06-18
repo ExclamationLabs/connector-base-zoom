@@ -39,10 +39,15 @@ Once this is all done, you can manage Users and Groups in Zoom's web UI by going
 
 ## Configuration properties 
 
-- See src/test/resources/testConfiguration.properties for an example
+- See src/test/resources/__bcon__development__exclamation_labs__zoom.properties for an example
 
-- exclamationlabs.connector.zoom.api.key - Use the API key saved from the 'Getting started' instructions.
+- CONNECTOR_BASE_CONFIGURATION_ACTIVE - Set this flag to Y to enable these configuration properties.  If this
+flag is set to N, integration tests will be ignored, and the connector configuration will not be able to be used
+in MidPoint.
 
-- exclamationlabs.connector.zoom.api.secret - Use the API secret saved from the 'Getting started' instructions.
+- CONNECTOR_BASE_AUTH_JWT_ISSUER - Use the API key saved from the 'Getting started' instructions.
 
-- exclamationlabs.connector.zoom.service.url - The Zoom service URL.  This is not likely to change often.
+- CONNECTOR_BASE_AUTH_JWT_SECRET - Use the API secret saved from the 'Getting started' instructions.
+
+- CONNECTOR_BASE_AUTH_JWT_EXPIRATION_PERIOD - The expiration period, in milliseconds, for the JWT token claim to
+occur and the access to token to be generated.  This is not the expiration of the access token itself.
