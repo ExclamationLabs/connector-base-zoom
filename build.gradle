@@ -5,8 +5,13 @@ plugins {
 
 repositories {
     jcenter()
-    flatDir {
-        dirs 'externalLib', 'externalTestLib'
+
+    maven {
+        url "https://artifactory.exclamationlabs.com/artifactory/libs-release-local"
+    }
+
+    maven {
+        url "http://nexus.evolveum.com/nexus/content/repositories/releases/"
     }
 }
 
@@ -28,10 +33,11 @@ dependencies {
     // JWT.io auth API for JWT
     compile 'com.auth0:java-jwt:3.10.3'
 
-    compile name: 'connector-base-0.1'
-    compile name: 'connector-common-1.5.0.0'
+    compile 'com.evolveum.polygon:connector-common:1.5.0.0'
 
-    testCompile name: 'connector-base-test-0.1'
+    compile 'com.exclamationlabs.connid:connector-base:0.1-+'
+
+    testCompile 'com.exclamationlabs.connid:connector-base-test-support:0.1-+'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-core:3.1.0'
@@ -48,16 +54,12 @@ task copyDependencyJars(type: Copy) {
     into file("custom/lib")
 }
 
-test {
-    exclude '**/*IntegrationTest*'
-}
-
 task baseClean(type: Delete) {
     delete 'custom'
 }
 
 jar {
-    archiveName("connector-base-zoom-${versionNumber}-connector.jar")
+    archiveName("${project.name}-${versionNumber}-connector.jar")
     from 'custom', 'build/classes/java/main', 'src/main/resources'
 
     manifest {
@@ -68,5 +70,4 @@ jar {
 }
 
 clean.dependsOn('baseClean')
-
 jar.dependsOn('copyDependencyJars')

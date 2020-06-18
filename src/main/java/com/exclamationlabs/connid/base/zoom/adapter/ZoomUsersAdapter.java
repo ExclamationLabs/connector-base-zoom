@@ -1,5 +1,19 @@
+/*
+    Copyright 2020 Exclamation Labs
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+        http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+*/
+
 package com.exclamationlabs.connid.base.zoom.adapter;
 
+import com.exclamationlabs.connid.base.connector.adapter.AdapterValueTypeConverter;
 import com.exclamationlabs.connid.base.connector.adapter.BaseUsersAdapter;
 import com.exclamationlabs.connid.base.zoom.model.ZoomGroup;
 import com.exclamationlabs.connid.base.zoom.model.ZoomUser;
@@ -15,16 +29,15 @@ public class ZoomUsersAdapter extends BaseUsersAdapter<ZoomUser, ZoomGroup> {
     @Override
     protected ZoomUser constructUser(Set<Attribute> attributes, boolean creation) {
         ZoomUser user = new ZoomUser();
-        user.setId(getIdentityIdAttributeValue(attributes));
-        user.setEmail(getIdentityNameAttributeValue(attributes));
+        user.setId(AdapterValueTypeConverter.getIdentityIdAttributeValue(attributes));
 
-        user.setFirstName(getSingleAttributeValue(String.class, attributes, FIRST_NAME));
-        user.setLastName(getSingleAttributeValue(String.class, attributes, LAST_NAME));
-        user.setEmail(getSingleAttributeValue(String.class, attributes, EMAIL));
-        user.setLanguage(getSingleAttributeValue(String.class, attributes, LANGUAGE));
-        user.setTimezone(getSingleAttributeValue(String.class, attributes, TIME_ZONE));
-        user.setStatus(getSingleAttributeValue(String.class, attributes, STATUS));
-        user.setType(getSingleAttributeValue(Integer.class, attributes, TYPE));
+        user.setFirstName(AdapterValueTypeConverter.getSingleAttributeValue(String.class, attributes, FIRST_NAME));
+        user.setLastName(AdapterValueTypeConverter.getSingleAttributeValue(String.class, attributes, LAST_NAME));
+        user.setEmail(AdapterValueTypeConverter.getSingleAttributeValue(String.class, attributes, EMAIL));
+        user.setLanguage(AdapterValueTypeConverter.getSingleAttributeValue(String.class, attributes, LANGUAGE));
+        user.setTimezone(AdapterValueTypeConverter.getSingleAttributeValue(String.class, attributes, TIME_ZONE));
+        user.setStatus(AdapterValueTypeConverter.getSingleAttributeValue(String.class, attributes, STATUS));
+        user.setType(AdapterValueTypeConverter.getSingleAttributeValue(Integer.class, attributes, TYPE));
         return user;
     }
 

@@ -13,7 +13,10 @@
 
 package com.exclamationlabs.connid.base.connector.zoom;
 
-import com.exclamationlabs.connid.base.connector.util.ConnectorTestUtils;
+import com.exclamationlabs.connid.base.connector.configuration.ConfigurationConnector;
+import com.exclamationlabs.connid.base.connector.configuration.ConfigurationNameBuilder;
+import com.exclamationlabs.connid.base.connector.test.IntegrationTest;
+import com.exclamationlabs.connid.base.connector.test.util.ConnectorTestUtils;
 import com.exclamationlabs.connid.base.zoom.ZoomConnector;
 import com.exclamationlabs.connid.base.zoom.attribute.ZoomGroupAttribute;
 import com.exclamationlabs.connid.base.zoom.attribute.ZoomUserAttribute;
@@ -34,19 +37,22 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ZoomConnectorIntegrationTest {
+public class ZoomConnectorIntegrationTest implements IntegrationTest {
 
     private ZoomConnector connector;
 
     private static String generatedUserId;
     private static String generatedGroupId;
 
+    @Override
+    public String getConfigurationName() {
+        return new ConfigurationNameBuilder().withConnector(ConfigurationConnector.ZOOM).build();
+    }
+
     @Before
     public void setup() {
         connector = new ZoomConnector();
-        ZoomConfiguration configuration = new ZoomConfiguration();
-        configuration.setMidPointConfigurationFilePath("src/test/resources/testZoomConfiguration.properties");
-        connector.init(configuration);
+        setup(connector, new ZoomConfiguration(getConfigurationName()));
     }
 
 
