@@ -13,6 +13,7 @@
 
 package com.exclamationlabs.connid.base.connector.zoom;
 
+import com.exclamationlabs.connid.base.connector.configuration.ConnectorProperty;
 import com.exclamationlabs.connid.base.connector.test.util.ConnectorMockRestTest;
 import com.exclamationlabs.connid.base.connector.test.util.ConnectorTestUtils;
 import com.exclamationlabs.connid.base.zoom.ZoomConnector;
@@ -30,10 +31,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -58,6 +56,7 @@ public class ZoomConnectorTest extends ConnectorMockRestTest {
             }
         };
         ZoomConfiguration configuration = new ZoomConfiguration();
+        configuration.setTestConfiguration();
         connector.init(configuration);
     }
 

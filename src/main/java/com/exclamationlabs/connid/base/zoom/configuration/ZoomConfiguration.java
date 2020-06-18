@@ -14,8 +14,10 @@
 package com.exclamationlabs.connid.base.zoom.configuration;
 
 import com.exclamationlabs.connid.base.connector.configuration.BaseConnectorConfiguration;
+import org.identityconnectors.framework.spi.ConfigurationClass;
 import org.identityconnectors.framework.spi.ConfigurationProperty;
 
+@ConfigurationClass(skipUnsupported = true)
 public class ZoomConfiguration extends BaseConnectorConfiguration {
 
     public ZoomConfiguration() {
