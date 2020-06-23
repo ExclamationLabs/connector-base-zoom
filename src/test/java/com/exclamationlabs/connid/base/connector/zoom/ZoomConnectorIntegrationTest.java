@@ -37,7 +37,7 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ZoomConnectorIntegrationTest implements IntegrationTest {
+public class ZoomConnectorIntegrationTest extends IntegrationTest {
 
     private ZoomConnector connector;
 

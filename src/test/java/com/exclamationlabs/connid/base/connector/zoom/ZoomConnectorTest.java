@@ -13,7 +13,6 @@
 
 package com.exclamationlabs.connid.base.connector.zoom;
 
-import com.exclamationlabs.connid.base.connector.configuration.ConnectorProperty;
 import com.exclamationlabs.connid.base.connector.test.util.ConnectorMockRestTest;
 import com.exclamationlabs.connid.base.connector.test.util.ConnectorTestUtils;
 import com.exclamationlabs.connid.base.zoom.ZoomConnector;
