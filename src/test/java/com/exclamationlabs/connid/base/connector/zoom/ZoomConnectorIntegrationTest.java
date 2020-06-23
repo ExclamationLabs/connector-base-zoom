@@ -46,7 +46,7 @@ public class ZoomConnectorIntegrationTest extends IntegrationTest {
 
     @Override
     public String getConfigurationName() {
-        return new ConfigurationNameBuilder().withConnector(ConfigurationConnector.ZOOM).build();
+        return new ConfigurationNameBuilder().withConnector(() -> "ZOOM").build();
     }
 
     @Before
