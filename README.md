@@ -1,6 +1,6 @@
 # Zoom Connector
 
-Open-source midPoint connector for Zoom <https://zoom.us>
+Open-source midPoint connector for Zoom <https://zoom.us>.  Uses the [Base Connector Framework](https://github.com/ExclamationLabs/connector-base).
 
 ## Introductory Notes
 
