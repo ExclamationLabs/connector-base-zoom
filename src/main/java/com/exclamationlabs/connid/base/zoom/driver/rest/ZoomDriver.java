@@ -25,6 +25,7 @@ import com.exclamationlabs.connid.base.zoom.model.request.UserCreationRequest;
 import com.exclamationlabs.connid.base.zoom.model.response.GroupMembersResponse;
 import com.exclamationlabs.connid.base.zoom.model.response.ListGroupsResponse;
 import com.exclamationlabs.connid.base.zoom.model.response.ListUsersResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.identityconnectors.framework.common.exceptions.ConnectorException;
 
 import java.util.ArrayList;
@@ -56,9 +57,12 @@ public class ZoomDriver extends BaseRestDriver<ZoomUser, ZoomGroup> {
     @Override
     public void test() throws ConnectorException {
         try {
-            executeGetRequest("/accounts/me/settings", null);
-        } catch (Exception e) {
-            throw new ConnectorException("Self-identification for Zoom connection user failed.", e);
+            executeGetRequest("/users/me/settings", null);
+        } catch (Exception ce) {
+            // Disregard usage rage limit exceed when Midpoint calls test() method repeatedly for unknown reason
+            if (!StringUtils.containsIgnoreCase(ce.getMessage(),"Code: 429")) {
+                throw new ConnectorException("Self-identification for Zoom connection user failed." + ce.getMessage(), ce);
+            }
         }
     }
 

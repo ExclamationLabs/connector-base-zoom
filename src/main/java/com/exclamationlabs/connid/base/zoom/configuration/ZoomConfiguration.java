@@ -17,7 +17,8 @@ import com.exclamationlabs.connid.base.connector.configuration.BaseConnectorConf
 import org.identityconnectors.framework.spi.ConfigurationClass;
 import org.identityconnectors.framework.spi.ConfigurationProperty;
 
-@ConfigurationClass(skipUnsupported = true)
+@ConfigurationClass(skipUnsupported = true, ignore =
+        {"credentialAccessToken", "midPointConfigurationFilePath"})
 public class ZoomConfiguration extends BaseConnectorConfiguration {
 
     public ZoomConfiguration() {
