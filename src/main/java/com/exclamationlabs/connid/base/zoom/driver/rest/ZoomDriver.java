@@ -56,7 +56,7 @@ public class ZoomDriver extends BaseRestDriver<ZoomUser, ZoomGroup> {
     @Override
     public void test() throws ConnectorException {
         try {
-            executeGetRequest("/accounts/me/settings", null);
+            executeGetRequest("/users/me/settings", null);
         } catch (Exception e) {
             throw new ConnectorException("Self-identification for Zoom connection user failed.", e);
         }

@@ -55,6 +55,10 @@ public class ZoomConnectorIntegrationTest extends IntegrationTest {
         setup(connector, new ZoomConfiguration(getConfigurationName()));
     }
 
+    @Test
+    public void test010Test() {
+        connector.test();
+    }
 
     @Test
     public void test110UserCreate() {
