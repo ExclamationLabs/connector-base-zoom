@@ -13,12 +13,11 @@
 
 package com.exclamationlabs.connid.base.connector.zoom;
 
-import com.exclamationlabs.connid.base.connector.configuration.ConfigurationConnector;
 import com.exclamationlabs.connid.base.connector.configuration.ConfigurationNameBuilder;
 import com.exclamationlabs.connid.base.connector.test.IntegrationTest;
 import com.exclamationlabs.connid.base.connector.test.util.ConnectorTestUtils;
 import com.exclamationlabs.connid.base.zoom.ZoomConnector;
-import com.exclamationlabs.connid.base.zoom.attribute.ZoomGroupAttribute;
+//import com.exclamationlabs.connid.base.zoom.attribute.ZoomGroupAttribute;
 import com.exclamationlabs.connid.base.zoom.attribute.ZoomUserAttribute;
 import com.exclamationlabs.connid.base.zoom.configuration.ZoomConfiguration;
 import com.exclamationlabs.connid.base.zoom.model.ZoomUserType;
@@ -29,10 +28,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -42,7 +38,9 @@ public class ZoomConnectorIntegrationTest extends IntegrationTest {
     private ZoomConnector connector;
 
     private static String generatedUserId;
-    private static String generatedGroupId;
+    //private static String generatedGroupId;
+
+    private static final Long randomId = (new Random()).nextLong();
 
     @Override
     public String getConfigurationName() {
@@ -63,11 +61,11 @@ public class ZoomConnectorIntegrationTest extends IntegrationTest {
     @Test
     public void test110UserCreate() {
         Set<Attribute> attributes = new HashSet<>();
-        attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.FIRST_NAME.name()).addValue("Fred").build());
+        attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.FIRST_NAME.name()).addValue("Fred" + randomId).build());
         attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.LAST_NAME.name()).addValue("Rubble").build());
         attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.TYPE.name()).addValue(ZoomUserType.BASIC).build());
 
-        attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.EMAIL.name()).addValue("fred@rubble.com").build());
+        attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.EMAIL.name()).addValue("fred" +  + randomId + "@rubble.com").build());
 
         Uid newId = connector.create(ObjectClass.ACCOUNT, attributes, new OperationOptionsBuilder().build());
         assertNotNull(newId);
@@ -78,7 +76,7 @@ public class ZoomConnectorIntegrationTest extends IntegrationTest {
     @Test
     public void test120UserModify() {
         Set<Attribute> attributes = new HashSet<>();
-        attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.FIRST_NAME.name()).addValue("Wilma").build());
+        attributes.add(new AttributeBuilder().setName(ZoomUserAttribute.FIRST_NAME.name()).addValue("Wilma" +  + randomId).build());
 
         Uid newId = connector.update(ObjectClass.ACCOUNT, new Uid(generatedUserId), attributes, new OperationOptionsBuilder().build());
         assertNotNull(newId);
@@ -108,7 +106,7 @@ public class ZoomConnectorIntegrationTest extends IntegrationTest {
         assertTrue(StringUtils.isNotBlank(idValues.get(0)));
     }
 
-
+/*
     @Test
     public void test210GroupCreate() {
         Set<Attribute> attributes = new HashSet<>();
@@ -158,6 +156,8 @@ public class ZoomConnectorIntegrationTest extends IntegrationTest {
     public void test290GroupDelete() {
         connector.delete(ObjectClass.GROUP, new Uid(generatedGroupId), new OperationOptionsBuilder().build());
     }
+
+ */
 
     @Test
     public void test390UserDelete() {
