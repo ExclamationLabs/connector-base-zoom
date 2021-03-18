@@ -51,3 +51,9 @@ in MidPoint.
 
 - CONNECTOR_BASE_AUTH_JWT_EXPIRATION_PERIOD - The expiration period, in milliseconds, for the JWT token claim to
 occur and the access to token to be generated.  This is not the expiration of the access token itself.
+
+## midPoint Configuration
+
+Install the compiled jar file in your connector library folder and restart midPoint. Make sure to set the full path to your JWT config file in the configuration properties for the resource config.
+
+Example resource configurations are available under ./src/test/resources/ in this repository
